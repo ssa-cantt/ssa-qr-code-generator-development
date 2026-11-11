@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Officers Receipt</title>
+<style>
+  :root{background:#fff4e6}
+  *{box-sizing:border-box}
+  body{font-family:Arial,sans-serif;max-width:620px;margin:0 auto;padding:24px 16px 40px;color:#222;background:#fff4e6}
+  .brand{display:flex;align-items:center;justify-content:center;gap:clamp(6px,2vw,18px);width:100%;margin:0 0 8px}
+  .brand-logo{width:clamp(32px,10vw,62px);height:clamp(32px,10vw,62px);object-fit:contain;flex:0 0 auto}
+  h1{text-align:center;color:#8f1717;font-size:clamp(.9rem,5vw,2.2rem);line-height:1.05;margin:0;min-width:0;flex:1;white-space:nowrap}
+  h1 span{display:inline}
+  .instruction{text-align:center;margin:0 0 22px}
+  .ticket-row{display:grid;grid-template-columns:1fr 132px;gap:10px;align-items:stretch;margin:14px 0}
+  .ticket-option,.seat-control{border-radius:8px;min-height:58px;padding:16px;font-size:18px}
+  .ticket-option{display:flex;align-items:center;background:#1976d2;color:#fff;font-weight:700}
+  .seat-control{display:flex;align-items:center;justify-content:center;gap:8px;background:#188038;color:#fff;font-weight:700}
+  .seat-control span{font-size:14px}
+  select{min-width:48px;padding:7px;border:0;border-radius:5px;background:#fff;color:#111;font-size:17px}
+  .show-selection{text-align:center;margin:24px 0 0;font-weight:700}
+  .show-toggle{display:inline-flex;margin-top:10px;border:2px solid #8f1717;border-radius:8px;overflow:hidden;background:#fff}
+  .show-toggle label{display:flex;align-items:center;gap:7px;padding:11px 18px;background:#fff;color:#8f1717;cursor:pointer}
+  .show-toggle input{position:static;opacity:1;width:16px;height:16px;margin:0;accent-color:#8f1717}
+  .show-toggle label:has(input:checked){background:#8f1717;color:#fff}
+  .summary{margin:24px 0;text-align:center;font-size:18px;font-weight:700}
+  .summary span{margin:0 12px}
+  #download{display:block;width:100%;padding:16px;border:0;border-radius:8px;background:#8f1717;color:#fff;font-size:19px;font-weight:700;cursor:pointer}
+  #download:disabled,select:disabled{opacity:.55;cursor:default}
+  @media (max-width:420px){.brand{gap:2px}.brand-logo{width:28px;height:28px}h1{font-size:1.08rem;line-height:1;white-space:nowrap}h1 span{display:inline}}
+  @media (max-width:420px){.ticket-row{grid-template-columns:1fr 112px}.ticket-option,.seat-control{padding:12px 8px;font-size:16px}.seat-control{gap:4px}.summary span{display:block;margin:8px}}
+</style>
+</head>
+<body>
+<div class="brand">
+  <img class="brand-logo" src="SWC.png" alt="SWC logo">
+  <h1 id="page-title"><span>SAPTA SHAKTI</span> <span>AUDITORIUM</span></h1>
+  <img class="brand-logo" src="SWC.png" alt="SWC logo">
+</div>
+<p class="instruction">Choose the ticket type and number of seats, then download the receipt.</p>
+<div id="tickets"></div>
+<div class="show-selection">Select show
+  <div class="show-toggle" role="group" aria-label="Select show">
+    <label><input type="radio" name="show" value="Matinee" checked><span>Matinee</span></label>
+    <label><input type="radio" name="show" value="Evening"><span>Evening</span></label>
+  </div>
+</div>
+<div class="summary"><span>Total seats: <strong id="seat-total">0</strong></span><span>Total amount: <strong id="amount-total">₹0</strong></span></div>
+<button id="download" type="button">Download Receipt</button>
+<p id="template-name" hidden></p>
+<script>
+window.RECEIPT_CONFIG = {
+  title: 'SAPTA SHAKTI AUDITORIUM',
+  templateName: 'Red officers receipt',
+  template: 'Offrs.png',
+  fileName: 'Ticket.png',
+  show: 'Matinee',
+  showColor: '#8f1717',
+  tickets: [
+    {label: 'Ticket - ₹ 100 (Mon-Fri & Sat Matinee Show)', price: 100},
+    {label: 'Ticket - ₹ 200 (Sat & Sun Evening Show)', price: 200},
+    {label: 'Ticket - ₹300 (Civilian Guests)', price: 300}
+  ]
+};
+</script>
+<script src="receipt-builder.js?v=4"></script>
+</body>
+</html>

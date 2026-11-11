@@ -1,2 +1,2 @@
-# ssa-qr-code-generator-development
-ssa-qr-code-generator-development
+# SSA-QR-Code-generator
+SSA QR Code generator
