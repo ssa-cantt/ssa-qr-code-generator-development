@@ -60,8 +60,8 @@ function drawReceipt(receipt, selections) {
       return total + item.price * item.seats;
     }, 0);
     var centerX = canvas.width / 2;
-    var lineHeight = Math.round(canvas.width * 0.027);
-    var fontSize = Math.round(canvas.width * 0.021);
+    var lineHeight = Math.round(canvas.width * 0.032);
+    var fontSize = Math.round(canvas.width * 0.024);
     var y = Math.round(canvas.height * 0.46);
 
     context.fillStyle = receipt.showColor;
